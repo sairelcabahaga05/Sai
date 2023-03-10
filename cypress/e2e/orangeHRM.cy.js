@@ -23,6 +23,7 @@ it ('passes', function(){
 //.should('have.value','Admin')
 
 
+
     cy.contains('Time',timeOut).should('be.visible').click()
         cy.get('.oxd-autocomplete-text-input > input').should('be.visible').type('Charlie Carter {Enter}')
       
