@@ -11,7 +11,7 @@ describe('Alerts Test',function(){
 
          })
           
-         cy.get('#result').should('have.text', ('You successfully clicked an alert sadasdasdasd'))
+         cy.get('#result').should('have.text', ('You successfully clicked an alert'))
 
     })
 
