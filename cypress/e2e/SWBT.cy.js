@@ -1,48 +1,41 @@
 
-const timeOut = {timeout:100000}
+const timeOut= {timeout:100000}
 
-describe('SWBT Test', ()=>{
+describe('SWBT Testing', ()=>{
 
-it('Valid Login', ()=>{
 
-    cy.visit('https://swbt-43857.alpha.reportheld-saas.com/office/main.html',timeOut)
+it('Login with valid all',()=>{
 
-    cy.get('#username')
+    cy.visit('https://swbt-43857.alpha.reportheld-saas.com/admin/main.html',timeOut)
+    cy.get('.login-logo',timeOut).should('be.visible')
+        
+    cy.get('#username',timeOut)
         .should('be.visible')
         .type('swbt-it-admin')
 
-    cy.get('#password')
-     .should('be.visible')
-     .type('testOJT**123')
 
-    cy.get('.login')
+    cy.get('#password',timeOut)
+        .should('be.visible')
+        .type('testOJT**123')
+
+    cy.get('#login',timeOut)
         .should('be.visible')
         .click()
-
-
-
-
-
-})
-
+    })
 
 /*
-it('Login with invalid username', ()=>{
+it('Login with invalid pass',()=>{
 
-    cy.visit('https://swbt-43857.alpha.reportheld-saas.com/office/main.html',timeOut)
+    cy.visit('https://swbt-43857.alpha.reportheld-saas.com/admin/main.html')
+    
+    
+    })
 
+ it('Login with invalid pass',()=>{
 
-})
-
-
-it('Login with invalid password', ()=>{
-
-    cy.visit('https://swbt-43857.alpha.reportheld-saas.com/office/main.html',timeOut)
-
-
-})
-
+     cy.visit('https://swbt-43857.alpha.reportheld-saas.com/admin/main.html')
+        
+        
+     }) 
 */
-
-
 })
