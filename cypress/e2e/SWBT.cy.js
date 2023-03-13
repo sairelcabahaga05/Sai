@@ -31,29 +31,35 @@ it('Login',()=>{
 
     
 
-    cy.wait(200000) //waiting for the loading to be done
-    cy.get('.users',timeOut).click() //to click user icon
+    cy.wait(100000) //waiting for the loading to be done
+    cy.get('.users',timeOut).click() //Click create user icon
        
     //Input User Username
     cy.get(':nth-child(2) > .recommended-input',timeOut)
         .should('be.visible')
-        .type('Sairel Cabahaga')
+        .type('Cyrill Cabahaga')
 
     //Input User Password
     cy.get(':nth-child(3) > .recommended-input',timeOut)
         .should('be.visible')
         .type('12345678')
 
-/*
-    cy.get('//input[@data-bind="value: firstName"]',timeOut)
-        .should('be.visible')
-        .type('Sairel')
 
-        
-    cy.get('//input[@data-bind="value: lastName"]',timeOut)
+    //Input User Firstname
+    cy.contains('First Name').parent().within(() => {
+        cy.get('input', timeOut)
+          .should('be.visible')
+          .first()
+          .type('Cyrill');
+      });
+      
+
+    //Input User Lastname 
+    cy.get('.recommended-input',timeOut)
         .should('be.visible')
-        .type('Cabahaga')
-*/
+        .eq(1) 
+        .type('Cabahaga');
+      
 
     //Input User Birthdate
     cy.get('[type="date"]',timeOut)
@@ -88,14 +94,26 @@ it('Login',()=>{
         .should('be.visible')
         .click()
  
-/*
+
     //To Confirm Inputs
     cy.get('.wrapper',timeOut)
         .should('be.visible')
         .and('contain','Are you sure you want to create new user?')
 
-*/
+    //Click the OK button
+    cy.get('[data-bind="visible: !hideOkButton()"] > .second > .btn',timeOut).click()
+        
 
+    cy.wait(10000)
+    //Click Profile Icon
+    cy.get('.scrollable > .profile',timeOut).click()
+        .should('be.visible')
+
+
+    cy.contains('Sign Out',timeOut).click();
+   
+
+    
 })
 
 
