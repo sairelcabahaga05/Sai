@@ -1,13 +1,14 @@
 
 const timeOut= {timeout:1000000}
 
-describe('Creating SWBT New User', ()=>{
+describe('SWBT Assessment', ()=>{
 
 
-it('Login',()=>{
+it('Creat New User',()=>{
 
+    //Visit the Website
     cy.visit('https://swbt-43857.alpha.reportheld-saas.com/admin/main.html',timeOut)
-    //cy.get('.login-logo',timeOut).should('be.visible')
+   
         
     //Enter Valid Username
     cy.get('#username',timeOut)
@@ -31,13 +32,14 @@ it('Login',()=>{
 
     
 
-    cy.wait(100000) //waiting for the loading to be done
-    cy.get('.users',timeOut).click() //Click create user icon
+    cy.wait(150000) //waiting for the loading to be done before executing next step
+    cy.get('.users',timeOut).click() //Click Create User Icon
        
     //Input User Username
     cy.get(':nth-child(2) > .recommended-input',timeOut)
         .should('be.visible')
-        .type('Cyrill Cabahaga')
+        .type('Cyrilllllll Cabahaga')
+
 
     //Input User Password
     cy.get(':nth-child(3) > .recommended-input',timeOut)
@@ -50,7 +52,7 @@ it('Login',()=>{
         cy.get('input', timeOut)
           .should('be.visible')
           .first()
-          .type('Cyrill');
+          .type('Cyrillllll');
       });
       
 
@@ -66,34 +68,37 @@ it('Login',()=>{
         .should('be.visible')
         .type('2001-07-12')
     
+
     //Input User Email Add
     cy.get('[data-bind="value: email"]',timeOut)
         .should('be.visible')
         .type('scabahaga@ssct.edu.ph')
+
 
     //Input User Contact Number
     cy.get('[data-bind="value: phone"]')
         .should('be.visible')
         .type('09505001514')
 
+
     //Choose User Primary Group
-    cy.get('.recommended-input-primary-group > .btn-group > .btn > .filter-option',timeOut).click()
-    cy.get('.recommended-input-primary-group > .btn-group > .open > .dropdown-menu > [data-original-index="1"] > a > .text').click()
+    cy.get('.recommended-input-primary-group > .btn-group > .btn > .filter-option',timeOut).should('be.visible').click()
+    cy.get('.recommended-input-primary-group > .btn-group > .open > .dropdown-menu > [data-original-index="1"] > a > .text',timeOut).should('be.visible').click()
     
+
     //Choose User Configuration Preset
-    cy.get(':nth-child(8) > .btn-group > .btn > .filter-option',timeOut).click()
-    cy.get(':nth-child(8) > .btn-group > .open > .dropdown-menu > .selected > a').click()
+    cy.get(':nth-child(8) > .btn-group > .btn > .filter-option',timeOut).should('be.visible').click()
+    cy.get(':nth-child(8) > .btn-group > .open > .dropdown-menu > .selected > a',timeOut).should('be.visible').click()
     
     //Choose Additional Group
-    cy.get('.item-with-add-button > .btn-group > .btn').click()
-    cy.get('.item-with-add-button > .btn-group > .open > .dropdown-menu > [data-original-index="2"] > a').click()
-    cy.get('.item-with-add-button > .groupxs-btn').click()
+    cy.get('.item-with-add-button > .btn-group > .btn',timeOut).should('be.visible').click()
+    cy.get('.item-with-add-button > .btn-group > .open > .dropdown-menu > [data-original-index="2"] > a',timeOut).should('be.visible').click()
+    cy.get('.item-with-add-button > .groupxs-btn',timeOut).should('be.visible').click()
 
     //To Save All Inputs
-    cy.contains('Save')
+    cy.contains('Save',timeOut)
         .should('be.visible')
         .click()
- 
 
     //To Confirm Inputs
     cy.get('.wrapper',timeOut)
@@ -101,19 +106,22 @@ it('Login',()=>{
         .and('contain','Are you sure you want to create new user?')
 
     //Click the OK button
-    cy.get('[data-bind="visible: !hideOkButton()"] > .second > .btn',timeOut).click()
-        
+    cy.get('[data-bind="visible: !hideOkButton()"] > .second > .btn',timeOut) .should('be.visible').click()
 
     cy.wait(10000)
     //Click Profile Icon
     cy.get('.scrollable > .profile',timeOut).click()
         .should('be.visible')
 
-
+    //Click to Sign Out
     cy.contains('Sign Out',timeOut).click();
-   
+    cy.get('.address > span').should('be.visible')
 
+    //Confirm Sign Out
+    cy.get('.second > .btn',timeOut) .should('be.visible').click()
     
+    //Return 
+    cy.visit('https://swbt-43857.alpha.reportheld-saas.com/admin/main.html',timeOut)
 })
 
 
