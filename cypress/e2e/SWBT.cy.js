@@ -4,7 +4,7 @@ const timeOut= {timeout:1000000}
 describe('SWBT Assessment', ()=>{
 
 
-it('Creat New User',()=>{
+it('Create New User',()=>{
 
     //Visit the Website
     cy.visit('https://swbt-43857.alpha.reportheld-saas.com/admin/main.html',timeOut)
@@ -15,30 +15,33 @@ it('Creat New User',()=>{
         .should('be.visible')
         .type('swbt-it-admin')
 
+
     //Enter Valid Password
     cy.get('#password',timeOut)
         .should('be.visible')
         .type('testOJT**123')
+
 
     //Click Login
     cy.get('#login',timeOut)
         .should('be.visible')
         .click()
 
+
     //Checking if its Loading
     cy.get('.wrapper > .inner',timeOut)
         .should('be.visible')
         .and('contain','Please be patient while data is loaded completely',timeOut)
 
-    
 
     cy.wait(150000) //waiting for the loading to be done before executing next step
     cy.get('.users',timeOut).click() //Click Create User Icon
        
+
     //Input User Username
     cy.get(':nth-child(2) > .recommended-input',timeOut)
         .should('be.visible')
-        .type('Cyrilllllll Cabahaga')
+        .type('Saiiirel Cabahaga')
 
 
     //Input User Password
@@ -52,7 +55,7 @@ it('Creat New User',()=>{
         cy.get('input', timeOut)
           .should('be.visible')
           .first()
-          .type('Cyrillllll');
+          .type('Saiiirel');
       });
       
 
@@ -90,39 +93,44 @@ it('Creat New User',()=>{
     cy.get(':nth-child(8) > .btn-group > .btn > .filter-option',timeOut).should('be.visible').click()
     cy.get(':nth-child(8) > .btn-group > .open > .dropdown-menu > .selected > a',timeOut).should('be.visible').click()
     
+
     //Choose Additional Group
     cy.get('.item-with-add-button > .btn-group > .btn',timeOut).should('be.visible').click()
     cy.get('.item-with-add-button > .btn-group > .open > .dropdown-menu > [data-original-index="2"] > a',timeOut).should('be.visible').click()
     cy.get('.item-with-add-button > .groupxs-btn',timeOut).should('be.visible').click()
 
-    //To Save All Inputs
+
+    //Save All Inputs
     cy.contains('Save',timeOut)
         .should('be.visible')
         .click()
 
-    //To Confirm Inputs
+
+    //Confirm Inputs
     cy.get('.wrapper',timeOut)
         .should('be.visible')
         .and('contain','Are you sure you want to create new user?')
 
+
     //Click the OK button
     cy.get('[data-bind="visible: !hideOkButton()"] > .second > .btn',timeOut) .should('be.visible').click()
 
+
     cy.wait(10000)
-    //Click Profile Icon
+    //Click Profile View
     cy.get('.scrollable > .profile',timeOut).click()
         .should('be.visible')
 
-    //Click to Sign Out
+
+    //Click Sign Out Button
     cy.contains('Sign Out',timeOut).click();
     cy.get('.address > span').should('be.visible')
+
 
     //Confirm Sign Out
     cy.get('.second > .btn',timeOut) .should('be.visible').click()
     
-    //Return 
-    cy.visit('https://swbt-43857.alpha.reportheld-saas.com/admin/main.html',timeOut)
+    
 })
-
 
 })
