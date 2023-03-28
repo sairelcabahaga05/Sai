@@ -7,7 +7,6 @@ import { LoginPage } from "./pages/login_pages"
 const loginPage = new LoginPage
 
 
-
 beforeEach(function(){
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',timeOut)
 
@@ -30,6 +29,8 @@ it ('Login Test 2', function(){
     loginPage.enterUsername('Admin123')
     loginPage.enterPassword('admin123')
     loginPage.clickLogin()
+    loginPage.getErrorMessage()
     
 })
 })
+
