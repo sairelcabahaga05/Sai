@@ -21,27 +21,27 @@ describe('Create Protocol', function () {
         cy.get('.toast-message').should('contain', 'Access denied') 
     })
 
-    it.only('Create Protocol', function () {
+    it('Create Protocol', function () {
 
         cy.get('#username', timeOut).should('be.visible').type('t-sairel')
         cy.get('#password', timeOut).should('be.visible').type('123')
         cy.get('#login').should('be.visible').click()
 
-        //cy.wait(80000)
-        cy.get('.modalHost', timeOut).should('not.exist')
+        cy.wait(60000)
         cy.get('.scrollable > .protocols', timeOut).should('be.visible').click() 
         cy.contains('Create protocol', timeOut).should('be.visible').click() 
 
-        cy.wait(5000)
+        //cy.wait(10000)
         cy.get('.button-container.left').first().within(() => {
-        cy.get('button').click().contains('FLENDER').click()
-        })
-
-        cy.wait(5000)
-        cy.get('.button-container.right').first().within(() => {
-        cy.get('button').click().contains('Voerde').click()
+        cy.get('button').click()
+        cy.contains('FLENDER').click()
         })
     
+        //cy.wait(10000)
+        cy.get('.button-container.right').first().within(() => {
+        cy.get('button').click()
+        cy.contains('Voerde').click()
+        })
         cy.contains('Ok', timeOut).should('be.visible').click()
 
         cy.get('div[class="inner clearfix"]', timeOut).within(() => {
