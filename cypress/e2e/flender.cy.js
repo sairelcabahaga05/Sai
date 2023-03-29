@@ -9,7 +9,7 @@ describe('Create Protocol', function () {
     it('Login with Valid Credentials', function () {
 
         cy.get('#username', timeOut).should('be.visible').type('t-sairel') 
-        cy.get('#password', timeOut).should('be.visible').type('asdfasdf') 
+        cy.get('#password', timeOut).should('be.visible').type('123') 
         cy.get('#login').should('be.visible').click()
     })
 
@@ -24,10 +24,11 @@ describe('Create Protocol', function () {
     it.only('Create Protocol', function () {
 
         cy.get('#username', timeOut).should('be.visible').type('t-sairel')
-        cy.get('#password', timeOut).should('be.visible').type('asdfasdf')
+        cy.get('#password', timeOut).should('be.visible').type('123')
         cy.get('#login').should('be.visible').click()
 
-        cy.wait(80000)
+        //cy.wait(80000)
+        cy.get('.modalHost', timeOut).should('not.exist')
         cy.get('.scrollable > .protocols', timeOut).should('be.visible').click() 
         cy.contains('Create protocol', timeOut).should('be.visible').click() 
 
